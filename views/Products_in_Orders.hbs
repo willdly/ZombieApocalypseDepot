@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Products in Order</title>
+<script type="text/javascript" nonce="74a670660ef546d6bdc7e941e19" src="//local.adguard.org?ts=1668048790616&amp;type=content-script&amp;dmn=cdn.discordapp.com&amp;pth=%2Fattachments%2F1022340520133001351%2F1040176548008955924%2Fproducts_in_orders.html&amp;app=com.apple.Safari&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+<script type="text/javascript" nonce="74a670660ef546d6bdc7e941e19" src="//local.adguard.org?ts=1668048790616&amp;name=AdGuard%20Extra&amp;type=user-script"></script><link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Products in Order</h1>
+
+[ <a href="/">Homepage</a> | <a href="Customers">Customers</a> | <a href="Orders">Orders</a> | <a href="Products">Products</a> | <a href="Categories">Categories</a> | <a href="Products_in_Orders">Products in Order</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Products in Orders</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th>Order Product ID</th>
+    <th>Order ID</th>
+    <th>Product ID</th>
+    <th>Quantity Purchased</th>
+    <th>Subtotal</th>
+  </tr>
+  <tr>
+    <td><button type="button">Edit</button></td>
+    <td align="right" >1</td>
+    <td align="right" >1</td>
+    <td align="right" >1</td>
+    <td align="right" >2</td>
+    <td>1999.98</td>
+  </tr>
+  <tr>
+    <td><button type="button">Edit</button></td>
+    <td align="right" >2</td>
+    <td align="right" >1</td>
+    <td align="right" >3</td>
+    <td align="right" >3</td>
+    <td>49.98</td>
+  </tr>
+  <tr>
+    <td><button type="button">Edit</button></td>
+    <td align="right" >3</td>
+    <td align="right" >2</td>
+    <td align="right" >4</td>
+    <td align="right" >10</td>
+    <td>35.00</td>
+  </tr>
+  <tr>
+    <td><button type="button">Edit</button></td>
+    <td align="right" >4</td>
+    <td align="right" >3</td>
+    <td align="right" >2</td>
+    <td align="right" >3</td>
+    <td>1349.97</td>
+  </tr>
+  <tr>
+    <td><button type="button">Edit</button></td>
+    <td align="right" >5</td>
+    <td align="right" >3</td>
+    <td align="right" >4</td>
+    <td align="right" >5</td>
+    <td>17.50</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="searchOrder" style="display: block">
+    <form id="searchOrder">
+        <legend><strong>Search Order</strong></legend>
+          <fieldset class="fields">
+           
+
+            <label> Order ID </label> <input type="number" name="order_id">
+ 
+
+          </fieldset>
+          <input class="btn" type="submit" id="searchOrder" value="Search an Order ID">
+	</form> 
+</div><!-- searchOrder -->
+
+<div id="searchProduct" style="display: block">
+    <form id="searchProduct">
+        <legend><strong>Search Product</strong></legend>
+          <fieldset class="fields">
+           
+
+            <label> Product ID </label> <input type="number" name="product_id">
+ 
+
+          </fieldset>
+          <input class="btn" type="submit" id="searchProduct" value="Search a Product ID">
+	</form> 
+</div><!-- searchProduct -->
+
+
+<div id="insert" style="display: block">
+    <form id="addOrder">
+        <legend><strong>Add Products in Orders</strong></legend>
+          <fieldset class="fields">
+           
+
+            <li><label> Order ID </label> <input type="number" name="order_id"></li>
+            
+            <li><label> Product ID </label> <input type="number" name="product_id"></li>
+
+            <li><label> Quantity Purchased </label> <input type="number" name="quantity_purchased"></li>
+
+            <li><label> Subtotal </label> <input type="number" name="total"></li>
+ 
+
+          </fieldset>
+          <input class="btn" type="submit" id="addOrder" value="Add">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new -->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<!-- <div id="update" style="display: block">
+  <form id="updateOrder">
+      <legend><strong>Update Order</strong></legend>
+          <fieldset class="fields">
+          
+            <li><label>Order ID:</label> 1</li>
+            
+            <li><label> Customer ID </label> <input type="number" value=2 name="customer_id"></li>
+
+            <li><label> Order Date </label> <input type="date"  name="order_date" value="2050-01-10"></li>
+            
+            <li><label> Total </label> <input type="number" name="total" value=2049.96></li>
+            
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateOrder" value="Update Order">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div>update -->
+</body>
+</html>

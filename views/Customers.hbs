@@ -1,0 +1,124 @@
+<!-- index.hbs -->
+<h1>Customers</h1>
+[ <a href="/">Homepage</a> | <a href="Customers">Customers</a> | <a href="Orders">Orders</a> | <a href="Products">Products</a> | <a href="Categories">Categories</a> | <a href="Products_in_Orders">Products in Order</a> ]
+<br>
+{{!-- Create a table --}}
+<table id= "customers-table" border="1" cellpadding="5">>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.customer_id}}>>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
+            <td>{{this.street}}</td>
+            <td>{{this.city}}</td>
+            <td>{{this.state}}</td>
+            <td>{{this.zip_code}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.phone_number}}</td>
+            <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_customer.js"></script>
+<br>
+
+{{!-- Form to add a record to the table  --}}
+<form id="add-customer-form-ajax">
+    <legend><strong>Add Customer</strong></legend>  
+    <fieldset>
+        <label for="input-first_name">First Name: </label>
+        <input type="text" name="input-first_name" id="input-first_name">
+        
+        <label for="input-last_name">Last Name: </label>
+        <input type="text" name="input-last_name" id="input-last_name">
+
+        <br>
+
+        <label for="input-street">Street: </label>
+        <input type="text" name="input-street" id="input-street">
+
+        <label for="input-city">City: </label>
+        <input type="text" name="input-city" id="input-city">
+
+        <label for="input-state">State: </label>
+        <input type="text" name="input-state" id="input-state">
+
+        <label for="input-zip_code">Zip Code: </label>
+        <input type="text" name="input-zip_code" id="input-zip_code">
+
+        <br>
+
+        <label for="input-email">Email: </label>
+        <input type="text" name="input-email" id="input-email">
+
+        <label for="input-phone_number">Phone Number: </label>
+        <input type="text" name="input-phone_number" id="input-phone_number">
+    </fieldset>
+</form>
+<input type="submit" form="add-customer-form-ajax" value="Add Customer">
+<div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_customer.js"></script>
+
+<p></p>
+
+<form id="update-customer-form-ajax">
+    <legend><strong>Update Customer</strong></legend>      
+    <fieldset>
+        <label for="input-fullname">Customer Name: </label>
+        <select name="input-fullname" id="mySelect">
+            <option value="test">Select a Customer</option>
+            {{#each data}}
+            <option value="{{this.customer_id}}">{{this.first_name}} {{this.last_name}}</option>
+            {{/each}}
+        </select>
+        
+        <br>
+
+        <label for="input-street">Street: </label>
+        <input type="text" name="input-street" id="input-street-update">
+
+        <label for="input-city">City: </label>
+        <input type="text" name="input-city" id="input-city-update">
+
+        <label for="input-state">State: </label>
+        <input type="text" name="input-state" id="input-state-update">
+
+        <label for="input-zip_code">Zip Code: </label>
+        <input type="text" name="input-zip_code" id="input-zip_code-update">
+
+        <br>
+
+        <label for="input-email">Email: </label>
+        <input type="text" name="input-email" id="input-email-update">
+
+        <label for="input-phone_number">Phone Number: </label>
+        <input type="text" name="input-phone_number" id="input-phone_number-update">
+
+    </fieldset>
+</form>
+<input type="submit" form="update-customer-form-ajax" value="Update Customer">
+
+<script src="./js/update_customer.js"></script>
