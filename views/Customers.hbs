@@ -122,3 +122,19 @@
 <input type="submit" form="update-customer-form-ajax" value="Update Customer">
 
 <script src="./js/update_customer.js"></script>
+
+<p></p>
+
+
+<form id="search-person-html" method='GET' action='/customers'>
+<legend><strong>Search Customer</strong></legend> 
+<fieldset>
+<p>Search by last name using the field below. Partial last names are OK too!</p>
+
+    <label for="input-last_name">Search by Last Name: </label>
+    <input type="text" name="last_name" id="input-last_name-html-search">
+    
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</fieldset>
+</form>
