@@ -1,7 +1,52 @@
+<head>
+<title>Customers</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.menu {
+  display: none;
+}
+</style>
+</head>
+
 <!-- index.hbs -->
 <h1>Customers</h1>
-[ <a href="/">Homepage</a> | <a href="Customers">Customers</a> | <a href="Orders">Orders</a> | <a href="Products">Products</a> | <a href="Categories">Categories</a> | <a href="Products_in_Orders">Products in Order</a> ]
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="/" class="w3-button w3-block w3-black">HOME</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="Customers" class="w3-button w3-block w3-black">Customers</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="Orders" class="w3-button w3-block w3-black">Orders</a>
+    </div>
+    <div class="w3-col s3">
+        <a href="Products" class="w3-button w3-block w3-black">Products</a>
+      </div>
+
+      <div class="w3-col s3">
+        <a href="Categories" class="w3-button w3-block w3-black">Categories</a>
+      </div>
+
+      <div class="w3-col s3">
+        <a href="Products_in_Orders" class="w3-button w3-block w3-black">Products in Orders</a>
+      </div>
+  </div>
+</div>
 <br>
+
+<h1>Customers</h1>
+
+
 {{!-- Create a table --}}
 <table id= "customers-table" border="1" cellpadding="5">>
 
