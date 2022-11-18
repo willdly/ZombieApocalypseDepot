@@ -56,6 +56,15 @@ updateCustomerForm.addEventListener("submit", function (e) {
             // Add the new data to the table
             updateRow(xhttp.response, fullNameValue);
 
+            // Clear the input fields for another transaction
+            inputFullName.value = '';
+            inputStreet.value = '';
+            inputCity.value = '';
+            inputState.value = '';
+            inputZipCode.value = '';
+            inputEmail.value = '';
+            inputPhoneNumber.value = '';
+
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

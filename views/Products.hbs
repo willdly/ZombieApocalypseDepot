@@ -1,133 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
+<head>
     <title>Products</title>
-  </head>
-  
-  <body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <style>
+    body, html {
+      height: 100%;
+      font-family: "Inconsolata", sans-serif;
+    }
+    
+    .menu {
+      display: none;
+    }
+    </style>
+    </head>
+    
+    <!-- index.hbs -->
     <h1>Products</h1>
-    [ <a href="/">Homepage</a> | <a href="Customers">Customers</a> | <a href="Orders">Orders</a> | <a href="Products">Products</a> | <a href="Categories">Categories</a> | <a href="Products_in_Orders">Products in Order</a> ]
-    <table border="1" cellpadding="5">
-        <tr>
-            <th><a href="#">New</a></th>
-            <th></th>
-            <th>Product ID</th>
-            <th>Product Name</th>
-            <th>Stock</th>
-            <th>Category ID</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td><button type="button">Edit</button></td>
-            <td><button type="button">Delete</button></td>
-            <td>1</td>
-            <td>Flamethrower 3000</td>
-            <td>40</td>
-            <td>3</td>
-            <td>999.99</td>
-            <td>A zombie apocalypse can happen any time from now, you must prepare for the future. Protect you and your
-                loved ones and burn these zombies to the ground!</td>
-        </tr>
-        <tr>
-            <td><button type="button">Edit</button></td>
-            <td><button type="button">Delete</button></td>
-            <td>2</td>
-            <td>Zombie Brain Blaster</td>
-            <td>20</td>
-            <td>3</td>
-            <td>449.99</td>
-            <td>Want to ensure a zombie is dead for good? No worries! Blast its brain into pieces with this blaster. </td>
-
-        </tr>
-        <tr>
-            <td><button type="button">Edit</button></td>
-            <td><button type="button">Delete</button></td>
-            <td>3</td>
-            <td>Emergency Flare Kit</td>
-            <td>30</td>
-            <td>2</td>
-            <td>24.99</td>
-            <td>Protect you and your family during a zombie apocalypse. Flares prevent you from being eaten by a zombie
-                and save lives. Flares are safe and easy to use.</td>
-
-        </tr>
-        <tr>
-            <td><button type="button">Edit</button></td>
-            <td><button type="button">Delete</button></td>
-            <td>4</td>
-            <td>Spam Luncheon Meat</td>
-            <td>50</td>
-            <td>1</td>
-            <td>3.50</td>
-            <td>It’s America’s #1 canned luncheon meat brand* - made with simple ingredients, has 7 g of protein per
-                serving, and is fully cooked and shelf stable.</td>
-
-        </tr>
-    </table>
+    <div class="w3-top">
+      <div class="w3-row w3-padding w3-black">
+        <div class="w3-col s3">
+          <a href="/" class="w3-button w3-block w3-black">HOME</a>
+        </div>
+        <div class="w3-col s3">
+          <a href="Customers" class="w3-button w3-block w3-black">Customers</a>
+        </div>
+        <div class="w3-col s3">
+          <a href="Orders" class="w3-button w3-block w3-black">Orders</a>
+        </div>
+        <div class="w3-col s3">
+            <a href="Products" class="w3-button w3-block w3-black">Products</a>
+          </div>
+    
+          <div class="w3-col s3">
+            <a href="Categories" class="w3-button w3-block w3-black">Categories</a>
+          </div>
+    
+          <div class="w3-col s3">
+            <a href="Products_in_Orders" class="w3-button w3-block w3-black">Products in Orders</a>
+          </div>
+      </div>
+    </div>
     <br>
-    <form id="add_product">
-        <legend><strong>Add Product</strong></legend>
-        <fieldset>
-            <label for="add_product_name">Product Name:</label>
-            <input type="text" id="add_product_name" name="add_product_name"><br>
-            <label for="add_stock">Stock:</label>
-            <input type="text" id="add_stock" name="add_stock"><br>
-            <label for="add_category_id">Category ID:</label>
-            <select name="add_category_id" id="add_category_id">
-                <option></option>
-                <option value="1">Food</option>
-                <option value="2">Safety</option>
-                <option value="3">Firearm</option>
-            </select><br>
-            <label for="add_price">Price:</label>
-            <input type="text" id="add_price" name="add_price"><br>
-            <label for="add_description">Description:</label>
-            <input type="text" id="add_description" name="add_description"><br>
-        </fieldset>
-    </form>
-    <input type="submit" form="add_product" value="Add">
-    <p>&nbsp;</p>
-    <form id="update_product">
-        <legend><strong>Update Product</strong></legend>
-        <fieldset>
-            <label for="update_product_name">Product Name:</label>
-            <input type="text" id="update_product_name" name="update_product_name"><br>
-            <label for="update_stock">Stock:</label>
-            <input type="text" id="update_stock" name="update_stock"><br>
-            <label for="update_category_id">Category ID:</label>
-            <select name="update_category_id" id="update_category_id">
-                <option></option>
-                <option value="1">Food</option>
-                <option value="2">Safety</option>
-                <option value="3">Firearm</option>
-            </select><br>
-            <label for="update_price">Price:</label>
-            <input type="text" id="update_price" name="update_price"><br>
-            <label for="update_description">Description:</label>
-            <input type="text" id="update_description" name="update_description"><br>
-        </fieldset>
-    </form>
-    <input type="submit" form="update_product" value="Update">
+    
+    
+    <body>
+    
+      
+      
+        <h1>Products</h1>
+    
+        <table id= "products-table" border="1" cellpadding="5">>
+    
+        {{!-- Header section --}}
+        <thead>
+    
+            {{!-- For just the first row, we print each key of the row object as a header cell so we
+            know what each column means when the page renders --}}
+            <tr>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th></th>
+            </tr>
+        </thead>
+    
+        {{!-- Body section --}}
+        <tbody>
+    
+            {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+            {{#each data}}
+            <tr data-value={{this.product_id}}>>
+                <td>{{this.product_id}}</td>
+                <td>{{this.product_name}}</td>
+                <td>{{this.quantity_in_stock}}</td>
+                <td>{{this.category_id}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.product_description}}</td>
+                <td><button onclick="deleteProduct({{this.product_id}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/delete_product.js"></script>
+    <!-- browse -->
+    
+    
+    
+        <br>
+        <form id="add-product-form-ajax">
+            <legend><strong>Add Product</strong></legend>  
+            <fieldset>
+                <label for="input-product_name">Product Name: </label>
+                <input type="text" name="input-product_name" id="input-product_name">
+                
+                <label for="input-quantity_in_stock">Quantity In Stock: </label>
+                <input type="number" name="input-quantity_in_stock" id="input-quantity_in_stock">
+                
+                <br>
 
-    <p></p>
+                <label for="input-category_id">Category ID: </label>
+                <input type="text" name="input-category_id" id="input-category_id">
 
-    <div id="delete" style="display: block">
-        <form method="POST" id="deleteProduct">
-            <legend><strong>Delete Product</strong></legend>
-                <fieldset class="fields">
-                <p>Are you sure you want to delete this product?</p>
-                <input type="hidden" name="productID" id="deleteproductID" value="1">
-                <label><strong>ID:</strong></label> 1
-                  <label> <strong>Name:</strong> </label> Flamethrower 3000
-                  
+                <label for="input-price">Price: </label>
+                <input type="number" step="0.01" name="input-price" id="input-price">
+
+                <br>
+
+                <label for="input-product_description">Description: </label>
+                <input type="text" name="input-product_description" id="input-product_description">
+            </fieldset>
+        </form>
+        <input type="submit" form="add-product-form-ajax" value="Add Product">
+        <div>
+        
+        {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+        <script src="./js/add_product.js"></script>
+        
+        <p></p>
+
+        <form id="update-product-form-ajax">
+            <legend><strong>Update Product</strong></legend>      
+            <fieldset>
+                <label for="input-product_name">Product Name: </label>
+                <select name="input-product_name" id="mySelect">
+                    <option value="test">Select a Product</option>
+                    {{#each data}}
+                    <option value="{{this.product_id}}">{{this.product_name}}</option>
+                    {{/each}}
+                </select>
+        
+                <label for="input-quantity_in_stock">Quantity In Stock: </label>
+                <input type="text" name="input-quantity_in_stock" id="input-quantity_in_stock-update">
+
+                <label for="input-category_id">Category ID: </label>
+                <input type="text" name="input-category_id" id="input-category_id-update">
+
+                <label for="input-price">Price: </label>
+                <input type="text" name="input-price" id="input-price-update">
+
+                <label for="input-product_description">Product Description: </label>
+                <input type="text" name="input-product_description" id="input-product_description-update">
+        
+            </fieldset>
+        </form>
+        <input type="submit" form="update-product-form-ajax" value="Update Product">
+        <script src="./js/update_product.js"></script>
+
+        <p></p>
+
+        <form id="search-product-html" method='GET' action='/products'>
+          <legend><strong>Search Product</strong></legend> 
+          <fieldset>
+          <p>Search by product name using the field below. Partial product names are OK too!</p>
+          
+              <label for="input-product_name">Search by Category Name: </label>
+              <input type="text" name="product_name" id="input-product_name-html-search">
+              
+              <input type="submit">
+              <a href='/'><button>Reset</button></a>
           </fieldset>
-          <input class="btn" type="submit" id="deleteProduct" value="Delete Product">
-                <input class="btn" type="button" value="cancel" onClick="browseProducts()">
-        </form> 
-      </div><!-- delete -->
-
-  </body>
-</html>
+          </form>
+    
+      </body>
+    </html>
