@@ -102,8 +102,14 @@
                 
                 <br>
 
-                <label for="input-category_id">Category ID: </label>
-                <input type="text" name="input-category_id" id="input-category_id">
+                <label for="input-category_id">Category Name: </label>
+                {{!-- <input type="text" name="input-category_id" id="input-category_id"> --}}
+                <select name="input-category_name" id="input-category_id">
+                    <option value="test">Select a Category</option>
+                    {{#each categories}}
+                    <option value="{{this.category_id}}">{{this.category_name}}</option>
+                    {{/each}}
+                </select>
 
                 <label for="input-price">Price: </label>
                 <input type="number" step="0.01" name="input-price" id="input-price">
@@ -136,8 +142,14 @@
                 <label for="input-quantity_in_stock">Quantity In Stock: </label>
                 <input type="text" name="input-quantity_in_stock" id="input-quantity_in_stock-update">
 
-                <label for="input-category_id">Category ID: </label>
-                <input type="text" name="input-category_id" id="input-category_id-update">
+                <label for="input-category_id">Category Name: </label>
+                {{!-- <input type="text" name="input-category_id" id="input-category_id-update"> --}}
+                <select name="input-category_id" id="input-category_id-update">
+                    <option value="test">Select a Category</option>
+                    {{#each categories}}
+                    <option value="{{this.category_id}}">{{this.category_name}}</option>
+                    {{/each}}
+                </select>
 
                 <label for="input-price">Price: </label>
                 <input type="text" name="input-price" id="input-price-update">
