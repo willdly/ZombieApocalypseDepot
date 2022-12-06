@@ -171,15 +171,15 @@ body, html {
 <p></p>
 
 
-<form id="search-person-html" method='GET' action='/customers'>
+<form id="search-customer-html" method='GET' action='/customers'>
 <legend><strong>Search Customer</strong></legend> 
 <fieldset>
-<p>Search by last name using the field below. Partial last names are OK too!</p>
+<p>Search by last name using the field below.</p>
 
-    <label for="input-last_name">Search by Last Name: </label>
+    <label for="input-last_name">Last Name: </label>
     <input type="text" name="last_name" id="input-last_name-html-search">
     
-    <input type="submit">
-    <a href='/'><button>Reset</button></a>
 </fieldset>
 </form>
+<input type="submit" form="search-customer-html" value="Search">
+<a href='/Customers'><button>Reset</button></a>

@@ -85,13 +85,13 @@
   <script src="./js/delete_order.js"></script>
   <!-- browse -->
   
-  <p>&nbsp;</p>
+ <p></p>
   
   {{!-- Form to add a record to the table  --}}
   <form id="add-order-form-ajax">
       <legend><strong>Add Order</strong></legend>  
       <fieldset>
-          <label for="input-customer_id">Customer Id: </label>
+          <label for="input-customer_id">Customer ID: </label>
           <input type="number" name="input-customer_id" min=1 id="input-customer_id">
           
           <label for="input-order_date">Order Date: </label>
@@ -108,7 +108,7 @@
   {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
   <script src="./js/add_order.js"></script>
   
-  <p>&nbsp;</p>
+  <p></p>
   
   <form id="update-order-form-ajax">
       <legend><strong>Update Order</strong></legend>      
@@ -123,7 +123,7 @@
           
           <br>
   
-          <label for="input-customer_id">Customer Id: </label>
+          <label for="input-customer_id">Customer ID: </label>
           <input type="number" min=1 name="input-customer_id" id="input-customer_id-update">
   
           <label for="input-order_date">Order Date: </label>
@@ -140,20 +140,19 @@
   <script src="./js/update_order.js"></script>
   <!-- update -->
   
-  <p>&nbsp;</p>
+  <p></p>
   
   <form id="search-order-html" method='GET' action='/orders'>
   <legend><strong>Search Customer ID</strong></legend> 
   <fieldset>
-  <p>Search by ID using the field below.</p>
+  <p>Search orders by Customer ID using the field below.</p>
   
-      <label for="input-customer_id">Enter ID: </label>
+      <label for="input-customer_id">Customer ID: </label>
       <input type="number" min=1 name="customer_id" id="input-customer_id-html-search">
-      
-      <input type="submit">
-      <a href='/'><button>Reset</button></a>
+
   </fieldset>
   </form>
-  
+  <input type="submit" form="search-order-html" value="Search">
+  <a href='/Orders'><button>Reset</button></a>
   </body>
   </html>

@@ -1,83 +1,118 @@
-<html>
 <head>
-<title>Products in Order</title>
-<script type="text/javascript" nonce="74a670660ef546d6bdc7e941e19" src="//local.adguard.org?ts=1668048790616&amp;type=content-script&amp;dmn=cdn.discordapp.com&amp;pth=%2Fattachments%2F1022340520133001351%2F1040176548008955924%2Fproducts_in_orders.html&amp;app=com.apple.Safari&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
-<script type="text/javascript" nonce="74a670660ef546d6bdc7e941e19" src="//local.adguard.org?ts=1668048790616&amp;name=AdGuard%20Extra&amp;type=user-script"></script><link href="style.css" rel="stylesheet" type="text/css" />
-</head>
+  <title>Products in Orders</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <style>
+  body, html {
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+  }
+  
+  .menu {
+    display: none;
+  }
+  </style>
+  </head>
+  
+  <!-- index.hbs -->
+  <h1>Products in Orders</h1>
+  <div class="w3-top">
+    <div class="w3-row w3-padding w3-black">
+      <div class="w3-col s3">
+        <a href="/" class="w3-button w3-block w3-black">HOME</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="Customers" class="w3-button w3-block w3-black">Customers</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="Orders" class="w3-button w3-block w3-black">Orders</a>
+      </div>
+      <div class="w3-col s3">
+          <a href="Products" class="w3-button w3-block w3-black">Products</a>
+        </div>
+  
+        <div class="w3-col s3">
+          <a href="Categories" class="w3-button w3-block w3-black">Categories</a>
+        </div>
+  
+        <div class="w3-col s3">
+          <a href="Products_in_Orders" class="w3-button w3-block w3-black">Products in Orders</a>
+        </div>
+    </div>
+  </div>
+  <br>
 
-<body>
-<h1>Products in Order</h1>
+<h1>Products in Orders</h1>
 
-[ <a href="/">Homepage</a> | <a href="Customers">Customers</a> | <a href="Orders">Orders</a> | <a href="Products">Products</a> | <a href="Categories">Categories</a> | <a href="Products_in_Orders">Products in Order</a> ]
-<div id="browse" style="display: block">
-<p><strong>Browse Products in Orders</strong></p>
-<table border="1" cellpadding="5">
-  <tr>
-    <th><a href="#">New</a></th>
-    <th>Order Product ID</th>
-    <th>Order ID</th>
-    <th>Product ID</th>
-    <th>Quantity Purchased</th>
-    <th>Subtotal</th>
-  </tr>
-  <tr>
-    <td><button type="button">Edit</button></td>
-    <td align="right" >1</td>
-    <td align="right" >1</td>
-    <td align="right" >1</td>
-    <td align="right" >2</td>
-    <td>1999.98</td>
-  </tr>
-  <tr>
-    <td><button type="button">Edit</button></td>
-    <td align="right" >2</td>
-    <td align="right" >1</td>
-    <td align="right" >3</td>
-    <td align="right" >3</td>
-    <td>49.98</td>
-  </tr>
-  <tr>
-    <td><button type="button">Edit</button></td>
-    <td align="right" >3</td>
-    <td align="right" >2</td>
-    <td align="right" >4</td>
-    <td align="right" >10</td>
-    <td>35.00</td>
-  </tr>
-  <tr>
-    <td><button type="button">Edit</button></td>
-    <td align="right" >4</td>
-    <td align="right" >3</td>
-    <td align="right" >2</td>
-    <td align="right" >3</td>
-    <td>1349.97</td>
-  </tr>
-  <tr>
-    <td><button type="button">Edit</button></td>
-    <td align="right" >5</td>
-    <td align="right" >3</td>
-    <td align="right" >4</td>
-    <td align="right" >5</td>
-    <td>17.50</td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-</div> <!-- browse -->
-<div id="searchOrder" style="display: block">
-    <form id="searchOrder">
-        <legend><strong>Search Order</strong></legend>
-          <fieldset class="fields">
-           
+ {{!-- Create a table --}}
+  <table id= "products-in-orders-table" border="1" cellpadding="5">>
+  
+      {{!-- Header section --}}
+      <thead>
+  
+          {{!-- For just the first row, we print each key of the row object as a header cell so we
+          know what each column means when the page renders --}}
+          <tr>
+              {{#each data.[0]}}
+              <th>
+                  {{@key}}
+              </th>
+              {{/each}}
+              <th></th>
+          </tr>
+      </thead>
+  
+      {{!-- Body section --}}
+      <tbody>
+  
+          {{!-- For each row, print the opid, oid, pid, quantity purchased, and subtotal, in order --}}
+          {{#each data}}
+          <tr data-value={{this.order_product_id}}>>
+              <td>{{this.order_product_id}}</td>
+              <td>{{this.order_id}}</td>
+              <td>{{this.product_id}}</td>
+              <td>{{this.quantity_purchased}}</td>
+              <td>{{this.subtotal}}</td>
+              <td><button onclick="deleteProductsInOrders({{this.order_product_id}})">Delete</button></td>
+          </tr>
+          {{/each}}
+      </tbody>
+  </table>
+  <script src="./js/delete_products_in_orders.js"></script>
+  <!-- browse -->
 
-            <label> Order ID </label> <input type="number" name="order_id">
- 
+<p></p>
 
-          </fieldset>
-          <input class="btn" type="submit" id="searchOrder" value="Search an Order ID">
-	</form> 
-</div><!-- searchOrder -->
+{{!-- Form to add a record to the table  --}}
+  <form id="add-product-in-order-form-ajax">
+      <legend><strong>Add Product in Order</strong></legend>  
+      <fieldset>
+          <label for="input-order_id">Order Id: </label>
+          <input type="number" name="input-order_id" min=1 id="input-order_id">
+          
+          <label for="input-product_id">Product Id: </label>
+          <input type="number" name="input-product_id" min=1 id="input-product_id">
 
-<div id="searchProduct" style="display: block">
+          <label for="input-quantity_purchased">Quantity Purchased: </label>
+          <input type="number" name="input-quantity_purchased" min=1 id="input-quantity_purchased">
+  
+          <label for="input-subtotal">Subtotal: </label>
+          <input type="number" step="0.01" name="input-subtotal" id="input-subtotal">
+  
+      </fieldset>
+  </form>
+  <input type="submit" form="add-product-in-order-form-ajax" value="Add Product In Order">
+  <div>
+  
+  {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+  <script src="./js/add_products_in_orders.js"></script>
+  
+<p></p>
+
+
+{{!-- <div id="searchProduct" style="display: block">
     <form id="searchProduct">
         <legend><strong>Search Product</strong></legend>
           <fieldset class="fields">
@@ -89,10 +124,10 @@
           </fieldset>
           <input class="btn" type="submit" id="searchProduct" value="Search a Product ID">
 	</form> 
-</div><!-- searchProduct -->
+</div><!-- searchProduct --> --}}
 
 
-<div id="insert" style="display: block">
+{{!-- <div id="insert" style="display: block">
     <form id="addOrder">
         <legend><strong>Add Products in Orders</strong></legend>
           <fieldset class="fields">
@@ -109,28 +144,59 @@
 
           </fieldset>
           <input class="btn" type="submit" id="addOrder" value="Add">
-          <input class="btn" type="button" value="cancel">
+          <input class="btn" type="button" value="cancel"> --}}
 	</form> <!--add new -->
 </div><!-- insert -->
 
-<p>&nbsp;</p>
-<!-- <div id="update" style="display: block">
-  <form id="updateOrder">
-      <legend><strong>Update Order</strong></legend>
-          <fieldset class="fields">
-          
-            <li><label>Order ID:</label> 1</li>
-            
-            <li><label> Customer ID </label> <input type="number" value=2 name="customer_id"></li>
+<form id="update-products_in_orders-form-ajax">
+  <legend><strong>Update Order</strong></legend>      
+  <fieldset>
+      <label for="input-order_product_id">Order Product ID: </label>
+      <select name="input-order_product_id" id="select_order_product_id">
+          <option value="test">Select an ID</option>
+          {{#each data}}
+          <option value="{{this.order_product_id}}">{{this.order_product_id}} </option>
+          {{/each}}
+      </select>
+      
+      <br>
 
-            <li><label> Order Date </label> <input type="date"  name="order_date" value="2050-01-10"></li>
-            
-            <li><label> Total </label> <input type="number" name="total" value=2049.96></li>
-            
-    </fieldset>
-    <input class="btn" type="submit" id="UpdateOrder" value="Update Order">
-          <input class="btn" type="button" value="cancel" >
-  </form> 
-</div>update -->
+      <label for="input-order_id">Order ID: </label>
+      <select name="input-order_id" id="select_order_id">
+          <option value="test">Select an ID</option>
+          {{#each data}}
+          <option value="{{this.order_id}}">{{this.order_id}} </option>
+          {{/each}}
+      </select>
+
+      <label for="input-product_id">Product ID: </label>
+      <input type="number" name="input-product_id" id="input-product_id-update">
+
+      <label for="input-quantity_purchased">Quantity Purchased: </label>
+      <input type="number" name="input-quantity_purchased" id="input-quantity_purchased-update">
+
+      <label for="input-subtotal">Subtotal: </label>
+      <input type="number" step="0.01" name="input-subtotal" id="input-subtotal-update">
+
+
+  </fieldset>
+</form>
+<input type="submit" form="update-products_in_orders-form-ajax" value="Update Order">
+
+<script src="./js/update_products_in_orders.js"></script>
+
+<p></p>
+
+<form id="search-products_in_orders-html" method='GET' action='/products_in_orders'>
+  <legend><strong>Search Products in Order</strong></legend> 
+  <fieldset>
+  <p>Search products in order by Order ID using the field below.</p>
+  
+      <label for="input-products_in_orders">Order ID: </label>
+      <input type="number" min=1 name="order_id" id="input-products_in_orders-html-search">
+  </fieldset>
+  </form>
+  <input type="submit" form="search-products_in_orders-html" value="Search">
+  <a href='/Products_in_Orders'><button>Reset</button></a>
 </body>
 </html>

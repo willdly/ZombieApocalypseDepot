@@ -20,9 +20,6 @@ updateOrderForm.addEventListener("submit", function (e) {
     let customerIdValue = inputCustomerId.value;
     let orderDateValue = inputOrderDate.value;
     let totalValue = inputTotal.value;
-    console.log(customerIdValue)
-    console.log(orderIdValue)
-    console.log(orderDateValue)
 
     
     // currently the database table for Orders does not allow updating values to NULL

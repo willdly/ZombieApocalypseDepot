@@ -70,7 +70,7 @@ app.get('/orders', function(req, res)
      // If there is a query string, we assume this is a search, and return desired results
      else
      {
-         query2 = `SELECT * FROM Orders WHERE customer_id LIKE "${req.query.customer_id}%"`
+         query2 = `SELECT * FROM Orders WHERE customer_id = "${req.query.customer_id}"`
      }
  
      // Run the 2nd query
@@ -138,7 +138,28 @@ app.get('/categories', function(req, res)
 
 app.get('/products_in_orders', function(req, res)
 {
-    res.render('Products_in_Orders');                    
+     // Declare Query 2
+     let query2;
+
+     // If there is no query string, we just perform a basic SELECT
+     if (req.query.order_id === undefined)
+     {
+         query2 = "SELECT * FROM Products_in_Orders;";
+     }
+ 
+     // If there is a query string, we assume this is a search, and return desired results
+     else
+     {
+         query2 = `SELECT * FROM Products_in_Orders WHERE order_id = "${req.query.order_id}"`
+     }
+ 
+     // Run the 2nd query
+     db.pool.query(query2, function(error, rows, fields){
+         
+         // Save the people
+         let product_in_order = rows;
+         return res.render('Products_in_Orders', {data: product_in_order});
+     })                    
 
 });
 
@@ -578,6 +599,116 @@ app.put('/put-product-ajax', function(req,res,next){
                 {
                     // Run the second query
                     db.pool.query(selectProduct, [product_name], function(error, rows, fields) {
+
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } else {
+                            res.send(rows);
+                        }
+                    })
+                }
+    })});
+
+// Products in Orders
+app.post('/add-product-in-order-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Products_in_Orders (order_id, product_id, quantity_purchased, subtotal) VALUES ('${data.order_id}', '${data.product_id}', '${data.quantity_purchased}', '${data.subtotal}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Orders
+            query2 = `SELECT Products_in_Orders.order_product_id, Products_in_Orders.order_id, Products_in_Orders.product_id, Products_in_Orders.quantity_purchased, Products_in_Orders.subtotal FROM Products_in_Orders;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+app.delete('/delete-products-in-orders-ajax/', function(req,res,next){
+    let data = req.body;
+    let productOrderID = parseInt(data.order_product_id);
+    let deleteProductsInOrders = `DELETE FROM Products_in_Orders WHERE order_product_id = ?`;
+    let deleteProductInOrder= `DELETE FROM Products_in_Orders WHERE order_id = ?`;
+    // let setForeignToZero = `SET FOREIGN_KEY_CHECKS=0`;
+    
+    //         db.pool.query(setForeignToZero)
+            // Run the 1st query
+            db.pool.query(deleteProductInOrder, [productOrderID], function(error, rows, fields){
+                if (error) {
+    
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error);
+                res.sendStatus(400);
+                }
+    
+                else
+                {
+                    // Run the second query
+                    db.pool.query(deleteProductsInOrders, [productOrderID], function(error, rows, fields) {
+    
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } else {
+                            res.sendStatus(204);
+                        }
+                    })
+                }
+    })});
+
+app.put('/put-product_in_order-ajax', function(req,res,next){
+    let data = req.body;
+
+    let order_product_id = data.order_product_id;
+    let order_id = data.order_id;
+    let product_id = data.product_id;
+    let quantity_purchased = data.quantity_purchased;
+    let subtotal = data.subtotal;
+
+    let queryUpdateProductInOrder = `UPDATE Products_in_Orders SET order_id = ?, product_id = ?, quantity_purchased = ?, subtotal = ? WHERE order_product_id = ?`;
+    let selectProductInOrder= `SELECT * FROM Products_in_Orders WHERE order_product_id = ?`
+
+            // Run the 1st query
+            db.pool.query(queryUpdateProductInOrder, [order_id, product_id, quantity_purchased, subtotal, order_product_id], function(error, rows, fields){
+                if (error) {
+
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error);
+                res.sendStatus(400);
+                }
+
+                // If there was no error, we run our second query and return that data so we can use it to update the people's
+                // table on the front-end
+                else
+                {
+                    // Run the second query
+                    db.pool.query(selectProductInOrder, [order_product_id], function(error, rows, fields) {
 
                         if (error) {
                             console.log(error);
