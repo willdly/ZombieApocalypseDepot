@@ -164,13 +164,18 @@
       <label for="input-order_id">Order ID: </label>
       <select name="input-order_id" id="select_order_id">
           <option value="test">Select an ID</option>
-          {{#each data}}
+          {{#each orders}}
           <option value="{{this.order_id}}">{{this.order_id}} </option>
           {{/each}}
       </select>
 
-      <label for="input-product_id">Product ID: </label>
-      <input type="number" name="input-product_id" id="input-product_id-update">
+      <label for="input-product_id">Product Name: </label>
+      <select name="input-product_id" id="select_product_id">
+          <option value="test">Select a Product</option>
+          {{#each products}}
+          <option value="{{this.product_id}}">{{this.product_name}} </option>
+          {{/each}}
+      </select>
 
       <label for="input-quantity_purchased">Quantity Purchased: </label>
       <input type="number" name="input-quantity_purchased" id="input-quantity_purchased-update">

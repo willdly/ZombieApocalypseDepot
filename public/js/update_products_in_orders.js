@@ -10,7 +10,7 @@ updateProductsInOrdersForm.addEventListener("submit", function (e) {
     // Get form fields we need to get data from
     let inputOrderProductId = document.getElementById("select_order_product_id");
     let inputOrderId = document.getElementById("select_order_id");
-    let inputProductId = document.getElementById("input-product_id-update");
+    let inputProductId = document.getElementById("select_product_id");
     let inputQuantityPurchased = document.getElementById("input-quantity_purchased-update");
     let inputSubtotal = document.getElementById("input-subtotal-update");
 

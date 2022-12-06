@@ -70,11 +70,13 @@
       {{!-- Body section --}}
       <tbody>
   
-          {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+          {{!-- For each row, print the oid, cid, date, and total, in order --}}
           {{#each data}}
           <tr data-value={{this.order_id}}>>
               <td>{{this.order_id}}</td>
               <td>{{this.customer_id}}</td>
+              <td>{{this.first_name}}</td>
+              <td>{{this.last_name}}</td>
               <td>{{this.order_date}}</td>
               <td>{{this.total}}</td>
               <td><button onclick="deleteOrder({{this.order_id}})">Delete</button></td>
@@ -85,14 +87,20 @@
   <script src="./js/delete_order.js"></script>
   <!-- browse -->
   
- <p></p>
+  <p></p>
   
   {{!-- Form to add a record to the table  --}}
   <form id="add-order-form-ajax">
       <legend><strong>Add Order</strong></legend>  
       <fieldset>
-          <label for="input-customer_id">Customer ID: </label>
-          <input type="number" name="input-customer_id" min=1 id="input-customer_id">
+          <label for="input-customer_id">Customer Last Name: </label>
+          <select name="customer_id" id="input-customer_id">
+              <option value="test">Select a Last Name</option>
+              {{#each customers}}
+              <option value="{{this.customer_id}}">{{this.first_name}} {{this.last_name}}</option>
+              {{/each}}
+          </select>
+          {{!-- <input type="number" name="input-customer_id" min=1 id="input-customer_id"> --}}
           
           <label for="input-order_date">Order Date: </label>
           <input type="date" name="input-order_date" id="input-order_date">
@@ -117,14 +125,13 @@
           <select name="input-order_id" id="mySelect">
               <option value="test">Select an ID</option>
               {{#each data}}
-              <option value="{{this.order_id}}">{{this.order_id}} </option>
+              <option value="{{this.order_id}}">{{this.order_id}}, {{this.first_name}} {{this.last_name}} </option>
               {{/each}}
           </select>
           
           <br>
-  
-          <label for="input-customer_id">Customer ID: </label>
-          <input type="number" min=1 name="input-customer_id" id="input-customer_id-update">
+
+          {{!-- <input type="number" min=1 name="input-customer_id" id="input-customer_id-update"> --}}
   
           <label for="input-order_date">Order Date: </label>
           <input type="date" name="input-order_date" id="input-order_date-update">
@@ -143,16 +150,26 @@
   <p></p>
   
   <form id="search-order-html" method='GET' action='/orders'>
-  <legend><strong>Search Customer ID</strong></legend> 
+  <legend><strong>Search Customer</strong></legend> 
   <fieldset>
-  <p>Search orders by Customer ID using the field below.</p>
+  <p>Search by Last Name using the field below.</p>
   
-      <label for="input-customer_id">Customer ID: </label>
-      <input type="number" min=1 name="customer_id" id="input-customer_id-html-search">
-
+      <label for="customer_id">Select Customer Last Name: </label>
+      <select name="customer_id" id="input-customer_id-html-search">
+              <option value="test">Select a Last Name</option>
+              {{#each customers}}
+              <option value="{{this.customer_id}}">{{this.last_name}}</option>
+              {{/each}}
+          </select>
+      
+      {{!-- <input type="number" min=1 name="customer_id" id="input-customer_id-html-search"> --}}
+      
+      {{!-- <input type="submit"> --}}
+      {{!-- <a href='/Orders'><button>Reset</button></a> --}}
   </fieldset>
+  <input type="submit">
   </form>
-  <input type="submit" form="search-order-html" value="Search">
   <a href='/Orders'><button>Reset</button></a>
+  
   </body>
   </html>

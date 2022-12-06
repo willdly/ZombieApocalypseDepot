@@ -58,27 +58,45 @@ app.get('/customers', function(req, res)
 
 app.get('/orders', function(req, res)
 {
+     // Declare Query 1
+     let query1;
+
      // Declare Query 2
-     let query2;
+     let query2 = "SELECT * FROM Customers;"
 
      // If there is no query string, we just perform a basic SELECT
      if (req.query.customer_id === undefined)
      {
-         query2 = "SELECT * FROM Orders;";
+         query1 = `SELECT Orders.order_id, Customers.customer_id, Customers.first_name, Customers.last_name, Orders.order_date, Orders.total 
+         FROM Orders 
+         INNER JOIN Customers ON Orders.customer_id=Customers.customer_id 
+         ORDER BY Orders.order_id ASC;`;
      }
  
      // If there is a query string, we assume this is a search, and return desired results
      else
      {
-         query2 = `SELECT * FROM Orders WHERE customer_id = "${req.query.customer_id}"`
+        //  query2 = `SELECT Orders.order_id, Customers.customer_id, Customers.first_name, Customers.last_name, Orders.order_date, Orders.total FROM Orders WHERE customer_id LIKE "${req.query.customer_id}%"`
+
+         query1 = `SELECT Orders.order_id, Customers.customer_id, Customers.first_name, Customers.last_name, Orders.order_date, Orders.total
+         FROM Orders
+         INNER JOIN Customers ON Orders.customer_id=Customers.customer_id
+         WHERE Customers.customer_id = "${req.query.customer_id}%"
+         ORDER BY Orders.order_id ASC;`
      }
  
-     // Run the 2nd query
-     db.pool.query(query2, function(error, rows, fields){
+     // Run the 1st query
+     db.pool.query(query1, function(error, rows, fields){
          
-         // Save the people
+         // Save the orders
          let order = rows;
-         return res.render('Orders', {data: order});
+
+        // run the second query
+        db.pool.query(query2, function(error, rows, fields){
+            let customers = rows;
+            return res.render('Orders', {data: order, customers: customers});
+        })
+         
      })                    
 
 });
@@ -139,26 +157,44 @@ app.get('/categories', function(req, res)
 app.get('/products_in_orders', function(req, res)
 {
      // Declare Query 2
-     let query2;
+     let query1;
 
      // If there is no query string, we just perform a basic SELECT
      if (req.query.order_id === undefined)
      {
-         query2 = "SELECT * FROM Products_in_Orders;";
+         query1 = "SELECT * FROM Products_in_Orders;";
      }
  
      // If there is a query string, we assume this is a search, and return desired results
      else
      {
-         query2 = `SELECT * FROM Products_in_Orders WHERE order_id = "${req.query.order_id}"`
+         query1 = `SELECT * FROM Products_in_Orders WHERE order_id = "${req.query.order_id}"`
      }
- 
-     // Run the 2nd query
-     db.pool.query(query2, function(error, rows, fields){
+
+    let query2 = "SELECT * FROM Orders;";
+    let query3 = "SELECT * FROM Products;";
+
+     // Run the 1st query
+     db.pool.query(query1, function(error, rows, fields){
          
          // Save the people
          let product_in_order = rows;
-         return res.render('Products_in_Orders', {data: product_in_order});
+
+         // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the orders
+            let orders = rows;
+
+            // Run the second query
+            db.pool.query(query3, (error, rows, fields) => {
+            
+                // Save the products
+                let products = rows;
+
+            return res.render('Products_in_Orders', {data: product_in_order, orders: orders, products: products});
+            })
+        })
      })                    
 
 });
@@ -299,7 +335,10 @@ app.post('/add-order-ajax', function(req, res)
         else
         {
             // If there was no error, perform a SELECT * on Orders
-            query2 = `SELECT Orders.order_id, Orders.customer_id, Orders.order_date, Orders.total FROM Orders;`;
+            query2 = `SELECT Orders.order_id, Customers.customer_id, Customers.first_name, Customers.last_name, Orders.order_date, Orders.total 
+            FROM Orders 
+            INNER JOIN Customers ON Orders.customer_id=Customers.customer_id 
+            ORDER BY Orders.order_id ASC;`;
             db.pool.query(query2, function(error, rows, fields){
 
                 // If there was an error on the second query, send a 400
@@ -355,16 +394,16 @@ app.put('/put-order-ajax', function(req,res,next){
     let data = req.body;
 
     let order_id = data.order_id;
-    let customer_id = data.customer_id;
+    // let customer_id = data.customer_id;
     let order_date = data.order_date;
     let total = data.total;
     // console.log(order_id)
 
-    let queryUpdateOrder = `UPDATE Orders SET customer_id = ?, order_date = ?, total = ? WHERE order_id = ?`;
+    let queryUpdateOrder = `UPDATE Orders SET order_date = ?, total = ? WHERE order_id = ?`;
     let selectOrder= `SELECT * FROM Orders WHERE order_id = ?`
 
             // Run the 1st query
-            db.pool.query(queryUpdateOrder, [customer_id, order_date, total, order_id], function(error, rows, fields){
+            db.pool.query(queryUpdateOrder, [order_date, total, order_id], function(error, rows, fields){
                 if (error) {
 
                 // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -718,7 +757,7 @@ app.put('/put-product_in_order-ajax', function(req,res,next){
                         }
                     })
                 }
-    })});
+    })});    
 
 /*
     LISTENER
