@@ -1,3 +1,10 @@
+/*
+CITATION
+1. Scope: SETUP and ROUTES(get, post, delete, put)
+2. Date: 12/5/2022
+3. Originality: SETUP mostly copied, ROUTES are based on starter
+4. Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+*/
 // App.js
 
 /*

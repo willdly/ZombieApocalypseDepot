@@ -1,3 +1,10 @@
+/*
+CITATION
+1. Scope: Functions/AJAX Requests
+2. Date: 12/5/2022
+3. Originality: Adapted
+4. Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+*/
 function deleteCustomer(customerID) {
     // Put our data we want to send in a javascript object
     let data = {
