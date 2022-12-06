@@ -72,6 +72,8 @@ addRowToTable = (data) => {
     let row = document.createElement("TR");
     let orderIdCell = document.createElement("TD");
     let customerIdCell = document.createElement("TD");
+    let firstNameCell = document.createElement("TD");
+    let lastNameCell = document.createElement("TD");
     let orderDateCell = document.createElement("TD");
     let totalCell = document.createElement("TD");
 
@@ -80,6 +82,8 @@ addRowToTable = (data) => {
     // Fill the cells with correct data
     orderIdCell.innerText = newRow.order_id;
     customerIdCell.innerText = newRow.customer_id;
+    firstNameCell.innerText = newRow.first_name;
+    lastNameCell.innerText = newRow.last_name;
     orderDateCell.innerText = newRow.order_date;
     totalCell.innerText = newRow.total;
 
@@ -92,6 +96,8 @@ addRowToTable = (data) => {
     // Add the cells to the row 
     row.appendChild(orderIdCell);
     row.appendChild(customerIdCell);
+    row.appendChild(firstNameCell);
+    row.appendChild(lastNameCell);
     row.appendChild(orderDateCell);
     row.appendChild(totalCell);
 
