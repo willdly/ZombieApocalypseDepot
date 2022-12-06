@@ -55,10 +55,10 @@ DROP TABLE IF EXISTS Products;
 
 -- Create Products Table
 CREATE TABLE Products (
-    product_id int NOT NULL AUTO_INCREMENT UNIQUE,
+    product_id int NOT NULL AUTO_INCREMENT,
     product_name varchar(255) NOT NULL,
     quantity_in_stock int UNSIGNED NOT NULL,
-    category_id int NOT NULL,
+    category_id int,
     price decimal(10,2) NOT NULL,
     product_description text NOT NULL,
     
